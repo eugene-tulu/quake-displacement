@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel-1 Satellite Imagery for Earthquake Displacement Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .navigation {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .nav-dot.active {
+            background: #fff;
+        }
+
+        section {
+            position: absolute;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .content {
+            max-width: 800px;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.5s;
+        }
+
+        section.active .content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #title-page {
+            background: linear-gradient(45deg, #ff6a00, #ee0979); /* Unique color for title page */
+            transform: translateY(0);
+        }
+
+        #introduction {
+            background: linear-gradient(45deg, #1a2a6c, #b21f1f);
+            transform: translateY(100%);
+        }
+
+        #methodology {
+            background: linear-gradient(45deg, #2C3E50, #3498DB);
+            transform: translateY(200%);
+        }
+
+        #methodology-duplicate {
+            background: linear-gradient(45deg, #2C3E50, #3498DB);
+            transform: translateY(300%);
+        }
+
+        #results {
+            background: linear-gradient(45deg, #134E5E, #71B280);
+            transform: translateY(400%);
+        }
+
+        #discussion {
+            background: linear-gradient(45deg, #4A00E0, #8E2DE2);
+            transform: translateY(500%);
+        }
+
+        #conclusion {
+            background: linear-gradient(45deg, #1f4037, #99f2c8);
+            transform: translateY(600%);
+        }
+
+        #recommendations {
+            background: linear-gradient(45deg, #2F4C6D, #F0B32D);
+            transform: translateY(700%);
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .interactive-element {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .interactive-element:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navigation">
+            <div class="nav-dot active" data-section="title-page"></div>
+            <div class="nav-dot" data-section="introduction"></div>
+            <div class="nav-dot" data-section="methodology"></div>
+            <div class="nav-dot" data-section="methodology-duplicate"></div>
+            <div class="nav-dot" data-section="results"></div>
+            <div class="nav-dot" data-section="discussion"></div>
+            <div class="nav-dot" data-section="conclusion"></div>
+            <div class="nav-dot" data-section="recommendations"></div>
+        </div>
+
+        <section id="title-page" class="active">
+            <div class="content">
+                <h2>Sentinel-1 Satellite Imagery for Earthquake Displacement Detection</h2>
+                <p>Exploring advanced techniques for monitoring seismic activities.</p>
+            </div>
+        </section>
+
+        <section id="introduction">
+            <div class="content">
+                <h2>Introduction</h2>
+                <p>Earthquakes are one of the most destructive natural disasters, causing widespread damage and loss of life. Timely and accurate assessment of earthquake damage is crucial for effective emergency response and resource allocation. This report demonstrates the practical application of Sentinel-1 satellite imagery for earthquake displacement detection using the Differential Interferometry (DInSAR) technique.</p>
+            </div>
+        </section>
+
+        <section id="methodology">
+            <div class="content">
+                <h2>Methodology</h2>
+                <p>We utilized Sentinel-1 satellite images acquired before and after the 2017 Iran earthquake event. The images were downloaded from the Copernicus website in SLC format, which contains amplitude and phase information. The phase information is essential for measuring ground changes, such as displacements caused by earthquakes.</p>
+            </div>
+        </section>
+
+        <section id="methodology-duplicate">
+            <div class="content">
+                <h2>Methodology (Cont.)</h2>
+                    <p>Images were unzipped and imported into SNAP software, a freely available tool for Sentinel-1 image processing. We followed a step-by-step approach to process the images, including:</p>
+                    <h3>Image Registration and Pre-processing</h3>
+                        <p>We selected the Co-Registration option from the Radar menu, ensuring the reference and secondary images were set correctly. The TOPSAR Splitting step was performed to improve processing accuracy by separating leading and trailing pulses.</p>
+                    <h3>Interferometric Processing</h3>
+                        <p>We combined the radar images to extract ground displacement changes. The S1 TOPS Deburst step reassembled parts of the image captured in TOPS mode into a complete image. Topographic Phase Removal was conducted to eliminate topographic variations, isolating real ground displacement changes.</p>
+                    <h3>Filtering and Unwrapping</h3>
+                        <p>Goldstein filtering was applied to reduce noise and correct phase in the radar data. The unwrapping stage resolved phase ambiguities, producing a continuous phase map essential for analyzing surface displacements.</p>
+                    <h3>Final Processing Steps</h3>
+                        <p>We converted phase changes into physical displacements of the Earth's surface using the Phase-to-Displacement process. Range Doppler Trend Correction adjusted radar images for topographic distortions, resulting in a more accurate representation of the Earth's surface.</p>
+            </div>
+        </section>
+
+        <section id="results">
+            <div class="content">
+                <h2>Results</h2>
+                <p>The final output of the DInSAR analysis revealed a distinct radial pattern of displacement, indicative of a concentric deformation field. The displacement map shows a clear pattern of subsidence, with the center of the deformation field experiencing the slightest displacement and increasing subsidence occurring radially further away from the center.</p>
+            </div>
+        </section>
+
+        <section id="discussion">
+            <div class="content">
+                <h2>Discussion</h2>
+                <p>The results of the DInSAR analysis provide a unique opportunity to study the earthquake-induced deformation mechanisms. The radial pattern of displacement, characteristic of a compressional deformation mechanism, suggests that the earthquake triggered a complex sequence of faulting and deformation processes. The high precision of the DInSAR results enables a detailed analysis of the displacement pattern, allowing for a better understanding of the underlying mechanisms driving the deformation. This information can be used to inform seismic hazard assessments, emergency response strategies, and urban planning initiatives, ultimately contributing to the development of more resilient communities.</p>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <div class="content">
+                <h2>Conclusion</h2>
+                <p>This practical report highlights the potential of Sentinel-1 satellite imagery for earthquake displacement detection. The DInSAR technique, combined with SNAP software, provides a powerful tool for assessing earthquake damage and informing emergency response strategies. We recommend further research and development to improve the accuracy and efficiency of this approach, as well as its integration with other data sources and technologies.</p>
+            </div>
+        </section>
+
+        <section id="recommendations">
+            <div class="content">
+                <h2>Recommendations</h2>
+                <ul>
+                    <li>Integrate Sentinel-1 data with other data sources, such as seismic data, GPS data, and field observations, to improve the accuracy and reliability of displacement measurements.</li>
+                    <li>Develop machine learning algorithms to automate the processing of Sentinel-1 images and improve the speed and efficiency of displacement detection.</li>
+                    <li>Conduct further research on the application of DInSAR technique for earthquake displacement detection, including the development of new algorithms and techniques to improve accuracy and resolution.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+            const navDots = document.querySelectorAll('.nav-dot');
+            let currentSection = 0;
+            let isScrolling = false;
+
+            function updateNav() {
+                navDots.forEach(dot => dot.classList.remove('active'));
+                navDots[currentSection].classList.add('active');
+            }
+
+            function scrollToSection(index) {
+                if (isScrolling) return;
+                isScrolling = true;
+                currentSection = index;
+
+                sections.forEach((section, i) => {
+                    section.style.transform = `translateY(${(i - index) * 100}%)`;
+                    section.classList.remove('active');
+                });
+
+                sections[index].classList.add('active');
+                updateNav();
+
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 700);
+            }
+
+            window.addEventListener('wheel', (e) => {
+                if (isScrolling) return;
+
+                if (e.deltaY > 0 && currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                } else if (e.deltaY < 0 && currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            });
+
+            navDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    scrollToSection(index);
+                });
+            });
+
+            // Touch events for mobile
+            let touchStartY = 0;
+            
+            document.addEventListener('touchstart', (e) => {
+                touchStartY = e.touches[0].clientY;
+            });
+
+            document.addEventListener('touchend', (e) => {
+                const touchEndY = e.changedTouches[0].clientY;
+                const diff = touchStartY - touchEndY;
+
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0 && currentSection < sections.length - 1) {
+                        scrollToSection(currentSection + 1);
+                    } else if (diff < 0 && currentSection > 0) {
+                        scrollToSection(currentSection - 1);
+                    }
+                }
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowDown' && currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                } else if (e.key === 'ArrowUp' && currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
