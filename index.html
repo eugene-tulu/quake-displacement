@@ -95,19 +95,27 @@
             transform: translateY(400%);
         }
 
+        #results-image {
+            background: linear-gradient(45deg, #134E5E, #71B280);
+            transform: translateY(500%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         #discussion {
             background: linear-gradient(45deg, #4A00E0, #8E2DE2);
-            transform: translateY(500%);
+            transform: translateY(600%);
         }
 
         #conclusion {
             background: linear-gradient(45deg, #1f4037, #99f2c8);
-            transform: translateY(600%);
+            transform: translateY(700%);
         }
 
         #recommendations {
             background: linear-gradient(45deg, #2F4C6D, #F0B32D);
-            transform: translateY(700%);
+            transform: translateY(800%);
         }
 
         h2 {
@@ -119,6 +127,12 @@
             font-size: 1.1em;
             line-height: 1.6;
             margin-bottom: 15px;
+        }
+
+        img {
+            max-width: 100%; /* Responsive image */
+            height: auto;
+            border: 2px solid white; /* Optional styling */
         }
 
         .interactive-element {
@@ -157,6 +171,7 @@
             <div class="nav-dot" data-section="methodology"></div>
             <div class="nav-dot" data-section="methodology-duplicate"></div>
             <div class="nav-dot" data-section="results"></div>
+            <div class="nav-dot" data-section="results-image"></div>
             <div class="nav-dot" data-section="discussion"></div>
             <div class="nav-dot" data-section="conclusion"></div>
             <div class="nav-dot" data-section="recommendations"></div>
@@ -201,18 +216,25 @@
         <section id="results">
             <div class="content">
                 <h2>Results</h2>
-                <p>The final output of the DInSAR analysis revealed a distinct radial pattern of displacement, indicative of a concentric deformation field. The displacement map shows a clear pattern of subsidence, with the center of the deformation field experiencing the slightest displacement and increasing subsidence occurring radially further away from the center.</p>
+                <p>The displacement map provides critical insights into the geographical context of the earthquake, highlighting key affected areas such as Sulaymaniyah, Halabja, and Darbandikhan along the Iran-Iraq border. The use of a color gradient effectively illustrates varying levels of ground displacement, with darker colors indicating more significant movement. This visualization allows for the rapid identification of the most severely impacted zones, which is essential for timely emergency response.
+
+                    Additionally, the map reveals concentric rings of displacement, suggesting that the intensity of ground movement diminishes with increasing distance from the epicenter, a common characteristic in seismic events. The integration of Geographic Information Systems (GIS) enhances the analysis by visualizing complex data, thus improving our understanding of spatial relationships and patterns associated with the earthquake's impact.
+                    
+                    This analysis is not only valuable for assessing infrastructure damage but also plays a crucial role in disaster response planning and resource allocation for emergency services. By combining satellite imagery and seismic sensor data, the study ensures accurate measurement of ground displacement, thereby enhancing the reliability of the findings and informing future recovery efforts.</p>
+            </div>
+        </section>
+
+        <section id="results-image">
+            <div class="content">
+                <h2>Results (Image)</h2>
+                <img src="map.png" alt="Displacement Map" />
             </div>
         </section>
 
         <section id="discussion">
             <div class="content">
                 <h2>Discussion</h2>
-                <p>The displacement map provides critical insights into the geographical context of the earthquake, highlighting key affected areas such as Sulaymaniyah, Halabja, and Darbandikhan along the Iran-Iraq border. The use of a color gradient effectively illustrates varying levels of ground displacement, with darker colors indicating more significant movement. This visualization allows for the rapid identification of the most severely impacted zones, which is essential for timely emergency response.
-
-Additionally, the map reveals concentric rings of displacement, suggesting that the intensity of ground movement diminishes with increasing distance from the epicenter, a common characteristic in seismic events. The integration of Geographic Information Systems (GIS) enhances the analysis by visualizing complex data, thus improving our understanding of spatial relationships and patterns associated with the earthquake's impact.
-
-This analysis is not only valuable for assessing infrastructure damage but also plays a crucial role in disaster response planning and resource allocation for emergency services. By combining satellite imagery and seismic sensor data, the study ensures accurate measurement of ground displacement, thereby enhancing the reliability of the findings and informing future recovery efforts.</p>
+                <p>The results of the DInSAR analysis provide a unique opportunity to study the earthquake-induced deformation mechanisms. The radial pattern of displacement, characteristic of a compressional deformation mechanism, suggests that the earthquake triggered a complex sequence of faulting and deformation processes. The high precision of the DInSAR results enables a detailed analysis of the displacement pattern, allowing for a better understanding of the underlying mechanisms driving the deformation. This information can be used to inform seismic hazard assessments, emergency response strategies, and urban planning initiatives, ultimately contributing to the development of more resilient communities.</p>
             </div>
         </section>
 
